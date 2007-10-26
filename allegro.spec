@@ -68,7 +68,7 @@ This package contains files needed to build programs using Allegro.
 
 %package esound-plugin
 Summary:        Allegro Enlightened Sound Daemon plugin
-Group:          System Environment/Libraries
+Group:          System/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description esound-plugin
@@ -77,7 +77,7 @@ sound through the Enlightened Sound Daemon (ESD / esound).
 
 %package arts-plugin
 Summary:        Allegro aRts (analog realtime synthesizer) plugin
-Group:          System Environment/Libraries
+Group:          System/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description arts-plugin
@@ -86,7 +86,7 @@ sound through aRts (analog realtime synthesizer).
 
 %package jack-plugin
 Summary:        Allegro JACK (Jack Audio Connection Kit) plugin
-Group:          System Environment/Libraries
+Group:          System/Libraries
 Requires:       %{name} = %{version}-%{release}
 
 %description jack-plugin

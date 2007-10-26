@@ -32,6 +32,7 @@ BuildRequires:	audiofile-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	jackit-devel
 BuildRequires:	autoconf
+BuildRequires:	texinfo
 %ifarch %ix86
 BuildRequires:	svgalib-devel
 %endif

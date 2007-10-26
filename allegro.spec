@@ -100,10 +100,10 @@ mv docs/src/allegro._tx.tmp docs/src/allegro._tx
 %build
 %{__autoconf}
 %configure2_5x	--enable-shared \
-		--enable-static \
 %ifarch %{ix86}
-		--enable-pentiumopts
+		--enable-pentiumopts \
 %endif
+		--enable-static
 make
 #MKDATA_PRELOAD=../../lib/unix/liballeg-%{version}.so DAT=../../tools/dat misc/mkdata.sh
 find demo examples setup -type f -perm +111 -print | xargs rm

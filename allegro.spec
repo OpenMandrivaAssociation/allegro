@@ -29,7 +29,7 @@ URL:		http://alleg.sourceforge.net/
 BuildRequires:	arts-devel
 BuildRequires:	esound-devel
 BuildRequires:	audiofile-devel
-BuildRequires:	XFree86-devel
+BuildRequires:	X11-devel
 BuildRequires:	jackit-devel
 BuildRequires:	autoconf
 BuildRequires:	texinfo

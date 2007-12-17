@@ -24,7 +24,6 @@ Source0:	http://sunsite.auc.dk/allegro/%{name}-%{version}.tar.gz
 %endif
 License:	Public Domain
 Group:		System/Libraries
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://alleg.sourceforge.net/
 BuildRequires:	arts-devel
 BuildRequires:	esound-devel

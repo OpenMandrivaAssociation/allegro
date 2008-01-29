@@ -1,6 +1,6 @@
 %define name	allegro
 %define version	4.2.2
-%define rel	1
+%define rel	2
 %define beta	0
 %if %{beta}
 %define	release	%mkrel 0.beta%{beta}.%{rel}
@@ -22,6 +22,7 @@ Source0:	http://sunsite.auc.dk/allegro/%{name}-%{version}-beta%{beta}.tar.gz
 %else
 Source0:	http://sunsite.auc.dk/allegro/%{name}-%{version}.tar.gz
 %endif
+Patch:		allegro-4.3.10plus-r9936-fix-alsa-unsigned-and-pulse.patch
 License:	Public Domain
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -95,6 +96,7 @@ sound through JACK (Jack Audio Connection Kit).
 
 %prep
 %setup -q
+%patch -p3 -b .pulse
 iconv -f iso-8859-1 -t utf-8 docs/src/allegro._tx > docs/src/allegro._tx.tmp
 mv docs/src/allegro._tx.tmp docs/src/allegro._tx
 

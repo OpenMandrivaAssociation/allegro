@@ -1,6 +1,6 @@
 %define name	allegro
 %define version	4.2.2
-%define rel	2
+%define rel	3
 %define beta	0
 %if %{beta}
 %define	release	%mkrel 0.beta%{beta}.%{rel}
@@ -49,6 +49,7 @@ Group:		System/Libraries
 Provides:	lib%{name} = %{version}-%{release}
 Provides:	%{testlib} = %{version}-%{release}
 Obsoletes:	%{testlib}
+Suggests:	%{name} >= %{version}
 
 %description -n	%{libname}
 Allegro is a library of functions for use in computer games

@@ -56,7 +56,7 @@ Allegro is a library of functions for use in computer games
 
 %package -n	%{develname}
 Summary:	Game programming library
-Group:		System/Libraries
+Group:		Development/C++
 Requires:	%{libname} = %{version}
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}

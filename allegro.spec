@@ -22,7 +22,10 @@ Source0:	http://sunsite.auc.dk/allegro/%{name}-%{version}-beta%{beta}.tar.gz
 %else
 Source0:	http://sunsite.auc.dk/allegro/%{name}-%{version}.tar.gz
 %endif
-Patch:		allegro-4.3.10plus-r9936-fix-alsa-unsigned-and-pulse.patch
+Patch0:		allegro-4.3.10plus-r9936-fix-alsa-unsigned-and-pulse.patch
+Patch1:		allegro-4.2.2-autoconf.patch
+Patch2:         allegro-4.2.2-gcc43.patch
+Patch3:         allegro-4.2.2-gcc43-asm.patch
 License:	Public Domain
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -97,7 +100,11 @@ sound through JACK (Jack Audio Connection Kit).
 
 %prep
 %setup -q
-%patch -p3 -b .pulse
+%patch0 -p3 -b .pulse
+%patch1
+%patch2 -p1
+%patch3 -p1
+
 iconv -f iso-8859-1 -t utf-8 docs/src/allegro._tx > docs/src/allegro._tx.tmp
 mv docs/src/allegro._tx.tmp docs/src/allegro._tx
 

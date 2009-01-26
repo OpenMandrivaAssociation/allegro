@@ -1,6 +1,6 @@
 %define name	allegro
 %define version	4.2.2
-%define rel	3
+%define rel	4
 %define beta	0
 %if %{beta}
 %define	release	%mkrel 0.beta%{beta}.%{rel}
@@ -26,11 +26,11 @@ Patch0:		allegro-4.3.10plus-r9936-fix-alsa-unsigned-and-pulse.patch
 Patch1:		allegro-4.2.2-autoconf.patch
 Patch2:         allegro-4.2.2-gcc43.patch
 Patch3:         allegro-4.2.2-gcc43-asm.patch
+Patch4:		allegro-4.2.2-format_not_a_string_literal_and_no_format_arguments.patch
 License:	Public Domain
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-URL:		http://alleg.sourceforge.net/
-BuildRequires:	arts-devel
+URL:		http://www.liballeg.org/
 BuildRequires:	esound-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	X11-devel
@@ -42,6 +42,7 @@ BuildRequires:	svgalib-devel
 %endif
 Obsoletes:	allegro-testing
 Provides:	allegro-testing = %{version}-%{release}
+Obsoletes:	allegro-arts-plugin
 
 %description
 Allegro is a library of functions for use in computer games
@@ -80,15 +81,6 @@ Requires:       %{name} = %{version}-%{release}
 This package contains a plugin for Allegro which enables Allegro to playback
 sound through the Enlightened Sound Daemon (ESD / esound).
 
-%package arts-plugin
-Summary:        Allegro aRts (analog realtime synthesizer) plugin
-Group:          System/Libraries
-Requires:       %{name} = %{version}-%{release}
-
-%description arts-plugin
-This package contains a plugin for Allegro which enables Allegro to playback
-sound through aRts (analog realtime synthesizer).
-
 %package jack-plugin
 Summary:        Allegro JACK (Jack Audio Connection Kit) plugin
 Group:          System/Libraries
@@ -104,18 +96,25 @@ sound through JACK (Jack Audio Connection Kit).
 %patch1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 iconv -f iso-8859-1 -t utf-8 docs/src/allegro._tx > docs/src/allegro._tx.tmp
 mv docs/src/allegro._tx.tmp docs/src/allegro._tx
 
 %build
+%define _disable_ld_no_undefined 1
+%ifnarch ix86
+export CFLAGS="%{optflags} -fPIC"
+%endif
+
 %{__autoconf}
 %configure2_5x	--enable-shared \
 %ifarch %{ix86}
-		--enable-pentiumopts \
+		--enable-opts=pentium \
 %endif
-		--enable-static
-make
+		--enable-static \
+		--enable-artsdigi=no
+%make -j1
 #MKDATA_PRELOAD=../../lib/unix/liballeg-%{version}.so DAT=../../tools/dat misc/mkdata.sh
 find demo examples setup -type f -perm +111 -print | xargs rm
 
@@ -160,13 +159,13 @@ rm -rf %{buildroot}
 %{_datadir}/allegro
 %{_libdir}/%{name}
 %exclude %{_libdir}/allegro/%{version}/alleg-esddigi.so
-%exclude %{_libdir}/allegro/%{version}/alleg-artsdigi.so
 %exclude %{_libdir}/allegro/%{version}/alleg-jackdigi.so
 %config(noreplace) %{_sysconfdir}/allegrorc
 
 %files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/*.so*
+%{_libdir}/*%{major}*.so*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root)
@@ -187,11 +186,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/%{name}/%{version}/alleg-esddigi.so
 
-%files arts-plugin
-%defattr(-,root,root,-)
-%{_libdir}/%{name}/%{version}/alleg-artsdigi.so
-
 %files jack-plugin
 %defattr(-,root,root,-)
 %{_libdir}/%{name}/%{version}/alleg-jackdigi.so
-

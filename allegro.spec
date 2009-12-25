@@ -1,6 +1,6 @@
 %define name	allegro
-%define version	4.2.2
-%define rel	5
+%define version	4.2.3
+%define rel	1
 %define beta	0
 %if %{beta}
 %define	release	%mkrel 0.beta%{beta}.%{rel}
@@ -18,14 +18,11 @@ Version:	%{version}
 Release:	%{release}
 Summary:	Game programming library
 %if %{beta}
-Source0:	http://sunsite.auc.dk/allegro/%{name}-%{version}-beta%{beta}.tar.gz
+Source0:	http://downloads.sourceforge.net/alleg/allegro/%{name}-%{version}-beta%{beta}.tar.gz
 %else
-Source0:	http://sunsite.auc.dk/allegro/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/alleg/allegro/%{name}-%{version}.tar.gz
 %endif
-Patch0:		allegro-4.3.10plus-r9936-fix-alsa-unsigned-and-pulse.patch
-Patch1:		allegro-4.2.2-autoconf.patch
 Patch2:         allegro-4.2.2-gcc43.patch
-Patch3:         allegro-4.2.2-gcc43-asm.patch
 Patch4:		allegro-4.2.2-format_not_a_string_literal_and_no_format_arguments.patch
 License:	Public Domain
 Group:		System/Libraries
@@ -92,10 +89,7 @@ sound through JACK (Jack Audio Connection Kit).
 
 %prep
 %setup -q
-%patch0 -p3 -b .pulse
-%patch1
 %patch2 -p1
-%patch3 -p1
 %patch4 -p1
 
 iconv -f iso-8859-1 -t utf-8 docs/src/allegro._tx > docs/src/allegro._tx.tmp

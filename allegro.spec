@@ -1,6 +1,6 @@
 %define name	allegro
-%define version	4.4.0.1
-%define alt_version 4.4.0
+%define version	4.4.1.1
+%define alt_version 4.4.1
 %define rel	1
 %define beta	0
 %if %{beta}
@@ -29,7 +29,6 @@ License:	Public Domain
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://alleg.sourceforge.net/
-#BuildRequires:	esound-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	X11-devel
 BuildRequires:	jackit-devel
@@ -72,15 +71,6 @@ Obsoletes:	%{mklibname allegro 4.2 -d}
 %description -n	%{develname}
 Allegro is a library of functions for use in computer games.
 This package contains files needed to build programs using Allegro.
-
-##%package esound-plugin
-#Summary:        Allegro Enlightened Sound Daemon plugin
-#Group:          System/Libraries
-#Requires:       %{name} = %{version}-%{release}
-
-##%description esound-plugin
-#This package contains a plugin for Allegro which enables Allegro to playback
-#sound through the Enlightened Sound Daemon (ESD / esound).
 
 %package jack-plugin
 Summary:        Allegro JACK (Jack Audio Connection Kit) plugin
@@ -180,10 +170,6 @@ rm -rf %{buildroot}
 %{_includedir}/allegrogl/*
 %{_mandir}/man3/*3*
 %{_infodir}/allegro.info*
-
-##%files esound-plugin
-##%defattr(-,root,root,-)
-##%{_libdir}/%{name}/%{alt_version}/alleg-esddigi.so
 
 %files jack-plugin
 %defattr(-,root,root,-)

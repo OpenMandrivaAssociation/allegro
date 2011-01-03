@@ -30,7 +30,12 @@ Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://alleg.sourceforge.net/
 BuildRequires:	audiofile-devel
-BuildRequires:	X11-devel
+BuildRequires:	libx11-devel
+BuildRequires:	libxcursor-devel
+Buildrequires:	libxext-devel
+BuildRequires:	libxpm-devel
+BuildRequires:	libxxf86vm-devel
+BuildRequires:	libxxf86dga-devel
 BuildRequires:	jackit-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libogg-devel

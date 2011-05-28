@@ -1,29 +1,14 @@
-%define name	allegro
-%define version	4.4.2
-%define alt_version 4.4.1
-%define rel	1
-%define beta	0
-%if %{beta}
-%define	release	%mkrel 0.beta%{beta}.%{rel}
-%else
-%define	release	%mkrel %{rel}
-%endif
-
 %define libname		%mklibname %{name} %{major}
 %define	develname	%mklibname %{name} -d
 %define	testlib		%mklibname allegro-testing %{major}
 %define major		4.4
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		allegro
+Version:	4.4.2
+Release:	%mkrel 1
 Summary:	Game programming library
-%if %{beta}
-Source0:	http://downloads.sourceforge.net/alleg/allegro/%{name}-%{version}-beta%{beta}.tar.gz
-%else
 Source0:	http://downloads.sourceforge.net/alleg/allegro/%{name}-%{version}.tar.gz
-%endif
-Patch2:         allegro-4.2.2-gcc43.patch
+Patch2:		allegro-4.2.2-gcc43.patch
 Patch4:		allegro-4.4.0.1-format_not_a_string_literal_and_no_format_arguments.patch
 License:	Public Domain
 Group:		System/Libraries
@@ -151,8 +136,7 @@ rm -rf %{buildroot}
 %{_bindir}/textconv
 %{_datadir}/allegro
 %{_libdir}/%{name}
-##%exclude %{_libdir}/allegro/%{alt_version}/alleg-esddigi.so
-%exclude %{_libdir}/allegro/%{alt_version}/alleg-jack.so
+%exclude %{_libdir}/allegro/*/alleg-jack.so
 %config(noreplace) %{_sysconfdir}/allegrorc
 
 %files -n %{libname}
@@ -178,4 +162,4 @@ rm -rf %{buildroot}
 
 %files jack-plugin
 %defattr(-,root,root,-)
-%{_libdir}/%{name}/%{alt_version}/alleg-jack.so
+%{_libdir}/%{name}/*/alleg-jack.so

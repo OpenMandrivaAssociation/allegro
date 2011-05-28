@@ -1,7 +1,7 @@
 %define name	allegro
-%define version	4.4.1.1
+%define version	4.4.2
 %define alt_version 4.4.1
-%define rel	3
+%define rel	1
 %define beta	0
 %if %{beta}
 %define	release	%mkrel 0.beta%{beta}.%{rel}

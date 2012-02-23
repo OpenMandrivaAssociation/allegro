@@ -5,14 +5,13 @@
 
 Name:		allegro
 Version:	4.4.2
-Release:	%mkrel 1
+Release:	2
 Summary:	Game programming library
 Source0:	http://downloads.sourceforge.net/alleg/allegro/%{name}-%{version}.tar.gz
 Patch2:		allegro-4.2.2-gcc43.patch
 Patch4:		allegro-4.4.0.1-format_not_a_string_literal_and_no_format_arguments.patch
 License:	Public Domain
 Group:		System/Libraries
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 URL:		http://alleg.sourceforge.net/
 BuildRequires:	audiofile-devel
 BuildRequires:	libx11-devel
@@ -155,8 +154,8 @@ rm -rf %{buildroot}
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/*.h
-%{_includedir}/allegro/*
-%{_includedir}/allegrogl/*
+%{_includedir}/allegro
+%{_includedir}/allegrogl
 %{_mandir}/man3/*3*
 %{_infodir}/allegro.info*
 

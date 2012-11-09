@@ -1,0 +1,103 @@
+--- examples/exkeys.c	2007-05-20 01:33:55.000000000 +0000
++++ examples/exkeys.c	2009-01-25 21:03:23.000000000 +0000
+@@ -193,7 +193,7 @@
+       if (key_shifts & KB_NUMLOCK_FLAG)  strcat(buf, " num");
+       if (key_shifts & KB_SCROLOCK_FLAG) strcat(buf, " scrl");
+       scroll();
+-      textprintf_ex(screen, font, 8, SCREEN_H-16, makecol(0, 0, 0), makecol(255, 255, 255), buf);
++      textprintf_ex(screen, font, 8, SCREEN_H-16, makecol(0, 0, 0), makecol(255, 255, 255), "%s", buf);
+    } while (k != 27);
+ 
+    /* various scan codes are defined in allegro.h as KEY_* constants */
+@@ -234,7 +234,7 @@
+       if (key[KEY_8]) buf[8] = '8'; else buf[8] = ' ';
+       if (key[KEY_9]) buf[9] = '9'; else buf[9] = ' ';
+       buf[10] = 0;
+-      textprintf_ex(screen, font, 8, SCREEN_H-16, makecol(0, 0, 0), makecol(255, 255, 255), buf);
++      textprintf_ex(screen, font, 8, SCREEN_H-16, makecol(0, 0, 0), makecol(255, 255, 255), "%s", buf);
+       rest(1);
+    } while (!keypressed() || (readkey() >> 8) != KEY_ESC);
+ 
+--- setup/setup.c	2005-11-17 06:03:53.000000000 +0000
++++ setup/setup.c	2009-01-25 20:32:05.000000000 +0000
+@@ -1162,7 +1162,7 @@
+ 	 textprintf_ex(bmp, font, SCREEN_W/2-96, SCREEN_H/2-60+c*20, -1, -1, uconvert_ascii("%s (%d/%d)", tmp),
+                     joystick_driver->name, i+1, num_joysticks);
+       else
+-	 textprintf_ex(bmp, font, SCREEN_W/2-96, SCREEN_H/2-60+c*20, -1, -1, joystick_driver->name);
++	 textprintf_ex(bmp, font, SCREEN_W/2-96, SCREEN_H/2-60+c*20, -1, -1, "%s", joystick_driver->name);
+       c++;
+    }
+ 
+@@ -2878,7 +2878,7 @@
+       alert(uconvert_ascii("Error loading " SETUP_DATA_FILE, tmp1), NULL, NULL, uconvert_ascii("OK", tmp2), NULL, 13, 0);
+     #else
+       set_gfx_mode(GFX_TEXT, 0, 0, 0, 0);
+-      allegro_message(uconvert_ascii("Error loading " SETUP_DATA_FILE "\n", tmp1));
++      allegro_message(uconvert_ascii("Error loading " SETUP_DATA_FILE "\n", tmp1), "%s");
+     #endif
+       return 1;
+    }
+
+--- src/linux/ljoy.c	2007-06-16 01:52:28.000000000 +0000
++++ src/linux/ljoy.c	2009-01-25 19:17:58.000000000 +0000
+@@ -89,7 +89,7 @@
+ 
+       if (ioctl(joy_fd[i], JSIOCGVERSION, &raw_version) < 0) {
+          /* NOTE: IOCTL fails if the joystick API is version 0.x */
+-         uszprintf(allegro_error, ALLEGRO_ERROR_SIZE, get_config_text("Your Linux joystick API is version 0.x which is unsupported."));
++         uszprintf(allegro_error, "%s", ALLEGRO_ERROR_SIZE, get_config_text("Your Linux joystick API is version 0.x which is unsupported."));
+          return -1; 
+       }
+       
+--- src/unix/umodules.c	2006-03-26 11:10:43.000000000 +0000
++++ src/unix/umodules.c	2009-01-25 19:00:21.000000000 +0000
+@@ -124,11 +124,11 @@
+ 	 continue;
+ 
+       if (!fullpath_slash) {
+-         snprintf(fullpath, sizeof fullpath, filename);
++         snprintf(fullpath, sizeof fullpath, "%s", filename);
+ 	 fullpath[(sizeof fullpath) - 1] = 0;
+       }
+       else {
+-	 snprintf(fullpath_slash+1, (sizeof fullpath) - (fullpath_slash - fullpath) - 1, filename);
++	 snprintf(fullpath_slash+1, (sizeof fullpath) - (fullpath_slash - fullpath) - 1, "%s", filename);
+ 	 fullpath[(sizeof fullpath) - 1] = 0;
+       }
+       
+
+--- tests/play.c	2005-03-19 11:15:07.000000000 +0000
++++ tests/play.c	2009-01-25 20:40:45.000000000 +0000
+@@ -74,7 +74,7 @@
+ 
+    strcat(msg, "\nIf you don't specify the card, Allegro will auto-detect (ie. guess :-)\n");
+ 
+-   allegro_message(msg);
++   allegro_message(msg, "%s");
+    free(msg);
+ }
+ 
+--- tools/pack.c	2006-05-20 14:49:58.000000000 +0000
++++ tools/pack.c	2009-01-25 20:54:23.000000000 +0000
+@@ -42,7 +42,7 @@
+       printf(": %s", s1);
+ 
+    if (s2)
+-      printf(s2);
++      printf(s2, "%s");
+ 
+    printf("\n");
+
+--- examples/extrans2.c.orig	2008-01-30 11:56:50.000000000 +0100
++++ examples/extrans2.c	2009-12-31 18:51:13.000000000 +0100
+@@ -211,7 +211,7 @@
+       } else {
+          msg = "no flipping";
+       }
+-      textprintf_ex(buffer, font, 1, 1, makecol(255, 255, 255), -1, msg);
++      textprintf_ex(buffer, font, 1, 1, makecol(255, 255, 255), -1, "%s", msg);
+ 
+       /* finally blit the back buffer on the screen */
+       blit(buffer, screen, 0, 0, 0, 0, buffer->w, buffer->h);
+ 

@@ -95,7 +95,7 @@ install -D -m 644 build/docs/man/*3* %{buildroot}%{_mandir}/man3
 install -D -m 644 allegro.cfg %{buildroot}%{_sysconfdir}/allegrorc
 install -d -m 755 %{buildroot}%{_datadir}/allegro
 install -D -m 644 keyboard.dat language.dat %{buildroot}%{_datadir}/allegro
-install -D -m 644 misc/allegro.m4 %{buildroot}%{_datadir}/aclocal
+install -D -m 644 misc/allegro.m4 %{buildroot}%{_datadir}/aclocal/allegro.m4
 
 %files
 %doc %{_docdir}/%{name}

@@ -112,7 +112,7 @@ rm -f %{buildroot}%{_libdir}/*.a
 %config(noreplace) %{_sysconfdir}/allegrorc
 
 %files -n %{libname}
-%{_libdir}/liballegro.so.%{major}*
+%{_libdir}/liballeg.so.%{major}*
 
 %files -n %{devname}
 %doc docs/txt/abi.txt docs/txt/ahack.txt docs/txt/allegro.txt

@@ -4,7 +4,7 @@
 
 Name:		allegro
 Version:	4.4.2
-Release:	6
+Release:	7
 Summary:	Game programming library
 License:	Public Domain
 Group:		System/Libraries

@@ -4,7 +4,7 @@
 
 Name:		allegro
 Version:	4.4.2
-Release:	4
+Release:	8
 Summary:	Game programming library
 License:	Public Domain
 Group:		System/Libraries
@@ -18,6 +18,7 @@ Patch4:		allegro-4.4.0.1-format_not_a_string_literal_and_no_format_arguments.pat
 
 BuildRequires:	cmake
 BuildRequires:	texinfo
+BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(audiofile)
 BuildRequires:	pkgconfig(glu)
 BuildRequires:	pkgconfig(jack)

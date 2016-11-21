@@ -5,12 +5,16 @@
 
 Name:		allegro
 Version:	4.4.2
-Release:	13
+Release:	14
 Summary:	Game programming library
 License:	Public Domain
 Group:		System/Libraries
 URL:		http://alleg.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/alleg/allegro/%{name}-%{version}.tar.gz
+# See http://liballeg.org/digmid.html
+# For allegro 4.x, apparently we can't use SF2 files, so can't share
+# with timidity
+Source1:	http://www.eglebbk.dds.nl/program/download/digmid.dat
 Patch0:		allegro-4.4.2-doc-install.patch
 # build seems to fail when username is build, workaround it
 Patch1:		allegro-4.4.2-userbuild.patch
@@ -42,7 +46,7 @@ Allegro is a library of functions for use in computer games
 %package -n	%{libname}
 Summary:	Game programming library
 Group:		System/Libraries
-Suggests:	%{name} >= %{version}
+Requires:	%{name} >= %{version}
 
 %description -n	%{libname}
 Allegro is a library of functions for use in computer games
@@ -97,6 +101,11 @@ install -D -m 644 keyboard.dat language.dat %{buildroot}%{_datadir}/allegro
 install -D -m 644 misc/allegro.m4 %{buildroot}%{_datadir}/aclocal/allegro.m4
 
 rm -f %{buildroot}%{_libdir}/*.a
+
+cd %{buildroot}%{_datadir}/allegro
+cp %{SOURCE1} patches.dat.bz2
+bunzip2 patches.dat.bz2
+sed -i -e 's,patches =,patches = %{_datadir}/allegro/patches.dat,' %{buildroot}%{_sysconfdir}/allegrorc
 
 %files
 %doc %{_docdir}/%{name}

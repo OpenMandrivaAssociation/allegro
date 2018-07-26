@@ -5,7 +5,7 @@
 
 Name:		allegro
 Version:	4.4.2
-Release:	14
+Release:	15
 Summary:	Game programming library
 License:	Public Domain
 Group:		System/Libraries
@@ -56,6 +56,7 @@ Summary:	Game programming library
 Group:		Development/C++
 Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
+Requires:	pkgconfig(x11)
 
 %description -n	%{devname}
 Allegro is a library of functions for use in computer games.

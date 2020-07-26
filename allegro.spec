@@ -4,13 +4,13 @@
 %define _disable_lto 1
 
 Name:		allegro
-Version:	4.4.2
+Version:	4.4.3.1
 Release:	16
 Summary:	Game programming library
 License:	Public Domain
 Group:		System/Libraries
 URL:		http://alleg.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/alleg/allegro/%{name}-%{version}.tar.gz
+Source0:	https://github.com/liballeg/allegro5/archive/%{version}/%{name}-%{version}.tar.gz
 # See http://liballeg.org/digmid.html
 # For allegro 4.x, apparently we can't use SF2 files, so can't share
 # with timidity

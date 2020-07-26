@@ -72,7 +72,7 @@ This package contains a plugin for Allegro which enables Allegro to playback
 sound through JACK (Jack Audio Connection Kit).
 
 %prep
-%setup -q
+%setup -qn %{name}5-%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1

@@ -5,7 +5,7 @@
 
 Name:		allegro
 Version:	4.4.3.1
-Release:	16
+Release:	1
 Summary:	Game programming library
 License:	Public Domain
 Group:		System/Libraries
@@ -98,7 +98,7 @@ install -d -m 755 %{buildroot}%{_mandir}/man3
 install -D -m 644 build/docs/man/*3* %{buildroot}%{_mandir}/man3
 install -D -m 644 allegro.cfg %{buildroot}%{_sysconfdir}/allegrorc
 install -d -m 755 %{buildroot}%{_datadir}/allegro
-install -D -m 644 keyboard.dat language.dat %{buildroot}%{_datadir}/allegro
+#install -D -m 644 keyboard.dat language.dat %{buildroot}%{_datadir}/allegro
 install -D -m 644 misc/allegro.m4 %{buildroot}%{_datadir}/aclocal/allegro.m4
 
 rm -f %{buildroot}%{_libdir}/*.a

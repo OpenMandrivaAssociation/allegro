@@ -20,7 +20,7 @@ Patch0:		allegro-4.4.2-doc-install.patch
 Patch1:		allegro-4.4.2-userbuild.patch
 Patch2:		allegro-4.2.2-gcc43.patch
 #Patch4:		allegro-4.4.0.1-format_not_a_string_literal_and_no_format_arguments.patch
-Patch5:		allegro-4.4.2-fix_get_value_gcc_5.patch
+#Patch5:		allegro-4.4.2-fix_get_value_gcc_5.patch
 
 BuildRequires:	cmake
 BuildRequires:	texinfo
@@ -77,7 +77,7 @@ sound through JACK (Jack Audio Connection Kit).
 %patch1 -p1
 %patch2 -p1
 #patch4 -p0
-%patch5 -p1
+#patch5 -p1
 
 iconv -f iso-8859-1 -t utf-8 docs/src/allegro._tx > docs/src/allegro._tx.tmp
 mv docs/src/allegro._tx.tmp docs/src/allegro._tx

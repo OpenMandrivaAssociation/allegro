@@ -4,13 +4,13 @@
 %define _disable_lto 1
 
 Name:		allegro
-Version:	4.4.2
-Release:	16
+Version:	4.4.3.1
+Release:	1
 Summary:	Game programming library
 License:	Public Domain
 Group:		System/Libraries
-URL:		http://alleg.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/alleg/allegro/%{name}-%{version}.tar.gz
+URL:		http://liballeg.org/
+Source0:	https://github.com/liballeg/allegro5/releases/download/%{version}/allegro-%{version}.tar.gz
 # See http://liballeg.org/digmid.html
 # For allegro 4.x, apparently we can't use SF2 files, so can't share
 # with timidity
@@ -19,8 +19,6 @@ Patch0:		allegro-4.4.2-doc-install.patch
 # build seems to fail when username is build, workaround it
 Patch1:		allegro-4.4.2-userbuild.patch
 Patch2:		allegro-4.2.2-gcc43.patch
-Patch4:		allegro-4.4.0.1-format_not_a_string_literal_and_no_format_arguments.patch
-Patch5:		allegro-4.4.2-fix_get_value_gcc_5.patch
 
 BuildRequires:	cmake
 BuildRequires:	texinfo
@@ -72,12 +70,7 @@ This package contains a plugin for Allegro which enables Allegro to playback
 sound through JACK (Jack Audio Connection Kit).
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch4 -p0
-%patch5 -p1
+%autosetup -p1
 
 iconv -f iso-8859-1 -t utf-8 docs/src/allegro._tx > docs/src/allegro._tx.tmp
 mv docs/src/allegro._tx.tmp docs/src/allegro._tx
@@ -126,7 +119,7 @@ sed -i -e 's,patches =,patches = %{_datadir}/allegro/patches.dat,' %{buildroot}%
 %config(noreplace) %{_sysconfdir}/allegrorc
 
 %files -n %{libname}
-%{_libdir}/liballeg.so.%{major}*
+%{_libdir}/lib*.so.%{major}*
 
 %files -n %{devname}
 %doc docs/txt/abi.txt docs/txt/ahack.txt docs/txt/allegro.txt

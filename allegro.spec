@@ -9,7 +9,7 @@ Release:	2
 Summary:	Game programming library
 License:	Public Domain
 Group:		System/Libraries
-URL:		http://liballeg.org/
+URL:		https://liballeg.org/
 Source0:	https://github.com/liballeg/allegro5/releases/download/%{version}/allegro-%{version}.tar.gz
 # See http://liballeg.org/digmid.html
 # For allegro 4.x, apparently we can't use SF2 files, so can't share
